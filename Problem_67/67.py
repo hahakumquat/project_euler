@@ -21,16 +21,12 @@ triangle with one-hundred rows.
 HEIGHT = 100
 NUM_EL = (HEIGHT) * (HEIGHT + 1) / 2
 
-#Node: contains a value, a parent node, and a child node
+#Node: contains a value, and children nodes
 class Node:
     def __init__(self, value, parent, childL, childR):
         self.v = value
-        self.p = parent
         self.cL = childL
         self.cR = childR
-
-    def get_parent(self):
-        return self.p
 
     def get_childL(self):
         return self.cL
@@ -40,9 +36,6 @@ class Node:
 
     def get_value(self):
         return self.v
-
-    def set_parent(self, _p):
-        self.p = _p
 
     def set_childL(self, _c):
         self.cL = _c
@@ -68,8 +61,6 @@ for row in range(HEIGHT):
     for _ in range(1, row+1):
         nodes[inc].set_childL(nodes[inc+row])
         nodes[inc].set_childR(nodes[inc+row+1])
-        nodes[inc+row].set_parent(nodes[inc])
-        nodes[inc+row+1].set_parent(nodes[inc])
         inc+=1
 
 #Largest Sum Algorithm; Compares right to left up the tree
